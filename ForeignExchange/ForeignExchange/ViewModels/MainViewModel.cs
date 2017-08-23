@@ -6,9 +6,19 @@ namespace ForeignExchange.ViewModels
     using GalaSoft.MvvmLight.Command;
     using System.Windows.Input;
     using System;
+    using System.ComponentModel;
 
-    public class MainViewModel
+    public class MainViewModel : INotifyPropertyChanged
     {
+
+        #region Events
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region Attributes
+        bool _isRunning;
+        string _result;
+        #endregion
 
         #region Properties
         public string Amount
@@ -29,27 +39,57 @@ namespace ForeignExchange.ViewModels
             set;
         }
         public bool IsRunning {
-            get;
-            set;
+            get {
+                return _isRunning;
+            }
+            set {
+                if (_isRunning != value) {
+                    _isRunning = value;
+                    PropertyChanged?.Invoke(
+                        this,
+                        new PropertyChangedEventArgs(nameof(IsRunning)));
+                }
+            }
         }
-        public int MyProperty {
-            get;
-            set;
-        }
+
         public bool IsEnabled {
             get;
             set;
         }
         public string Result {
-            get;
-            set;
+            get
+            {
+                return _result;
+            }
+            set
+            {
+                if (_result != value)
+                {
+                    _result = value;
+                    PropertyChanged?.Invoke(
+                        this,
+                        new PropertyChangedEventArgs(nameof(Result)));
+                }
+            }
         }
         #endregion
 
+        #region Constructors
         public MainViewModel()
         {
+            LoadRates();
+        }
+
+
+        #endregion
+
+        #region Methods
+        void LoadRates() {
+            IsRunning = true;
+            Result = "Loading rates...";
 
         }
+        #endregion
 
         #region Commands
         public ICommand ConvertCommand {
