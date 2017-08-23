@@ -20,12 +20,30 @@ namespace ForeignExchange.ViewModels
             get;
             set;
         }
-        public Rate SourceRate { get; set; }
-        public Rate TargetRate { get; set; }
-        public bool IsRunning { get; set; }
-        public int MyProperty { get; set; }
-        public bool IsEnabled { get; set; }
-        public string Result { get; set; }
+        public Rate SourceRate {
+            get;
+            set;
+        }
+        public Rate TargetRate {
+            get;
+            set;
+        }
+        public bool IsRunning {
+            get;
+            set;
+        }
+        public int MyProperty {
+            get;
+            set;
+        }
+        public bool IsEnabled {
+            get;
+            set;
+        }
+        public string Result {
+            get;
+            set;
+        }
         #endregion
 
         public MainViewModel()
